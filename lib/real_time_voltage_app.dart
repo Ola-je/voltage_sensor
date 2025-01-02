@@ -7,6 +7,7 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:fl_chart/fl_chart.dart';
 import 'package:voltage/storedreadingscreen.dart';
 import 'package:voltage/voltagedatabasehelper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RealTimeVoltageApp extends StatefulWidget {
   final CameraDescription camera;
@@ -141,8 +142,42 @@ class _RealTimeVoltageAppState extends State<RealTimeVoltageApp> {
     if (!_controller.value.isInitialized) return Center(child: CircularProgressIndicator());
 
     return Scaffold(
-      appBar: AppBar(title: Text('Voltage Reader')),
-      body: Column(
+appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            IconButton(
+            icon: Icon(Icons.arrow_back_ios, color:  Color.fromARGB(255, 114, 174, 67),),
+            onPressed: () {
+              Navigator.pop(context);
+            }
+            ),
+            Expanded(
+              child: Text(
+                "EcoSpark",
+                style: GoogleFonts.anton(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color:  Color.fromARGB(255, 114, 174, 67),
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.history, color:  Color.fromARGB(255, 114, 174, 67),),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StoredReadingsScreen()), // Navigate to history screen
+              );
+            },
+          ),
+        ],
+      ),      body: Column(
         children: [
           Expanded(
             flex: 2,
@@ -181,15 +216,6 @@ class _RealTimeVoltageAppState extends State<RealTimeVoltageApp> {
             child: HistogramChart(readings: _voltageReadings),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.list),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => StoredReadingsScreen()),
-          );
-        },
       ),
     );
   }
