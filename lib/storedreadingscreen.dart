@@ -42,28 +42,6 @@ class _StoredReadingsScreenState extends State<StoredReadingsScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Stored Voltage Readings'),
-      //   actions: [
-      //     IconButton(
-      //       icon: Icon(_showGraph ? Icons.list : Icons.show_chart),
-      //       onPressed: () {
-      //         setState(() {
-      //           _showGraph = !_showGraph; // Toggle between graph and list
-      //         });
-      //       },
-      //     ),
-      //     IconButton(
-      //       icon: Icon(Icons.delete),
-      //       onPressed: () async {
-      //         await _dbHelper.deleteAllReadings();
-      //         setState(() => _readings.clear());
-      //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('All readings deleted')));
-      //       },
-      //     ),
-      //   ],
-      // ),
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
