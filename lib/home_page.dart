@@ -69,10 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              "Recent Analysis",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
             SizedBox(height: 16),
             // Graph display
             Expanded(
