@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:voltage/home_page.dart';  // Updated import
+import 'package:voltage/home_page.dart';
+import 'package:voltage/splash_screen.dart';  // Updated import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),  // HomeScreen as the initial screen
+      home: SplashScreen(),  // HomeScreen as the initial screen
       debugShowCheckedModeBanner: false,
     );
   }
