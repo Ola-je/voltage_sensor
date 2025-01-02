@@ -177,7 +177,8 @@ appBar: AppBar(
             },
           ),
         ],
-      ),      body: Column(
+      ),  
+          body: Column(
         children: [
           Expanded(
             flex: 2,

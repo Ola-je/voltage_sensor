@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:voltage/voltagedatabasehelper.dart';
@@ -167,6 +169,8 @@ class _StoredReadingsScreenState extends State<StoredReadingsScreen> {
                     },
                   ),
           ),
+
+          SizedBox(height: 20,)
         ],
       ),
     );
