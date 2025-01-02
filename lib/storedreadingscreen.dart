@@ -27,7 +27,7 @@ class _StoredReadingsScreenState extends State<StoredReadingsScreen> {
   Future<void> _loadReadings() async {
     final readings = await _dbHelper.getAllReadings();
     setState(() {
-      _readings = readings;
+      _readings = List<Map<String, dynamic>>.from(readings);
       if (_readings.isNotEmpty) {
         _averageVoltage = _readings.map((e) => e['voltage'] as double).reduce((a, b) => a + b) / _readings.length;
         _maxVoltage = _readings.map((e) => e['voltage'] as double).reduce((a, b) => a > b ? a : b);
@@ -78,9 +78,22 @@ class _StoredReadingsScreenState extends State<StoredReadingsScreen> {
           IconButton(
             icon: Icon(Icons.delete, color:  Color.fromARGB(255, 114, 174, 67)),
             onPressed: () async {
-              await _dbHelper.deleteAllReadings();
-              setState(() => _readings.clear());
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('All readings deleted')));
+              try {
+                await _dbHelper.deleteAllReadings();
+                if (mounted) {
+                  setState(() {
+                    _readings = []; // Safely clear the list.
+                  });
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('All readings deleted')),
+                );
+              } catch (e) {
+                print('Error while deleting readings: $e');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Failed to delete readings')),
+                );
+              }
             },
           ),
         ],

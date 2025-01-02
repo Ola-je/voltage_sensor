@@ -54,6 +54,12 @@ class VoltageDatabaseHelper {
 
   Future<void> deleteAllReadings() async {
     final db = await database;
-    await db.delete('readings');
+    try {
+      final deletedCount = await db.delete('readings');
+      print('Deleted $deletedCount readings successfully');
+    } catch (e) {
+      print('Error deleting readings: $e');
+      throw Exception('Failed to delete readings');
+    }
   }
 }
